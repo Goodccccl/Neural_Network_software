@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>abnormal</class>
+ <widget class="QWidget" name="abnormal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>884</width>
+    <height>724</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>abnormal</string>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
