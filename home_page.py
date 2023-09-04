@@ -1,10 +1,10 @@
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 
-from classify_page import Classify_page
-from detect_page import Detect_page
-from segment_page import Segment_page
-from abnormal_page import Abnormal_page
+from MakingTrainDataset.classify_train_dataset import Classify_train_dataset_page
+from MakingTrainDataset.detect_train_dataset import  Detect_train_dataset_page
+from MakingTrainDataset.segment_train_dataset import Segment_train_dataset_page
+from MakingTrainDataset.abnormal_train_dataset import Abnormal_train_dataset_page
 
 
 class Home_page(QMainWindow):
@@ -21,21 +21,21 @@ class Home_page(QMainWindow):
 
     # 连接跳转界面函数
     def open_classify(self):
-        # 打开分类界面
-        self.classify_page = Classify_page()
+        # 打开分类确定数据界面
+        self.classify_page = Classify_train_dataset_page()
         self.classify_page.show()
 
     def open_detect(self):
-        # 打开目标检测界面
-        self.detect_page = Detect_page()
+        # 打开目标检测确定数据界面
+        self.detect_page = Detect_train_dataset_page()
         self.detect_page.show()
 
     def open_segment(self):
-        # 打开分割界面
-        self.segment_page = Segment_page()
+        # 打开分割确定数据界面
+        self.segment_page = Segment_train_dataset_page()
         self.segment_page.show()
 
     def open_abnormal(self):
-        # 打开异常检测界面
-        self.abnoraml_page = Abnormal_page()
+        # 打开异常检测确定数据界面
+        self.abnoraml_page = Abnormal_train_dataset_page()
         self.abnoraml_page.show()

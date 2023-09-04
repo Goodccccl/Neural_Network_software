@@ -5,3 +5,4 @@ class Classify_page(QWidget):
     def __init__(self):
         super(Classify_page, self).__init__()
         loadUi('uis/classify.ui', self)
+
