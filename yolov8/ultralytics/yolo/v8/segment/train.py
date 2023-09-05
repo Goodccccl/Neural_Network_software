@@ -5,14 +5,14 @@ from copy import copy
 import torch
 import torch.nn.functional as F
 
-from ultralytics.nn.tasks import SegmentationModel
-from ultralytics.yolo import v8
-from ultralytics.yolo.utils import DEFAULT_CFG
-from ultralytics.yolo.utils.ops import crop_mask, xyxy2xywh
-from ultralytics.yolo.utils.plotting import plot_images, plot_results
-from ultralytics.yolo.utils.tal import make_anchors
-from ultralytics.yolo.utils.torch_utils import de_parallel
-from ultralytics.yolo.v8.detect.train import Loss
+from yolov8.ultralytics.nn.tasks import SegmentationModel
+from yolov8.ultralytics.yolo import v8
+from yolov8.ultralytics.yolo.utils import DEFAULT_CFG
+from yolov8.ultralytics.yolo.utils.ops import crop_mask, xyxy2xywh
+from yolov8.ultralytics.yolo.utils.plotting import plot_images, plot_results
+from yolov8.ultralytics.yolo.utils.tal import make_anchors
+from yolov8.ultralytics.yolo.utils.torch_utils import de_parallel
+from yolov8.ultralytics.yolo.v8.detect.train import Loss
 
 
 # BaseTrainer python usage
@@ -147,7 +147,7 @@ def train(cfg=DEFAULT_CFG, use_python=False):
 
     args = dict(model=model, data=data, device=device)
     if use_python:
-        from ultralytics import YOLO
+        from yolov8.ultralytics import YOLO
         YOLO(model).train(**args)
     else:
         trainer = SegmentationTrainer(overrides=args)

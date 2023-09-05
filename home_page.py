@@ -22,20 +22,20 @@ class Home_page(QMainWindow):
     # 连接跳转界面函数
     def open_classify(self):
         # 打开分类确定数据界面
-        self.classify_page = Classify_train_dataset_page()
-        self.classify_page.show()
+        self.classify_data_page = Classify_train_dataset_page()
+        self.classify_data_page.show()
 
     def open_detect(self):
         # 打开目标检测确定数据界面
-        self.detect_page = Detect_train_dataset_page()
-        self.detect_page.show()
+        self.detect_data_page = Detect_train_dataset_page()
+        self.detect_data_page.show()
 
     def open_segment(self):
         # 打开分割确定数据界面
-        self.segment_page = Segment_train_dataset_page()
-        self.segment_page.show()
+        self.segment_data_page = Segment_train_dataset_page()
+        self.segment_data_page.show()
 
     def open_abnormal(self):
         # 打开异常检测确定数据界面
-        self.abnoraml_page = Abnormal_train_dataset_page()
-        self.abnoraml_page.show()
+        self.abnoraml_data_page = Abnormal_train_dataset_page()
+        self.abnoraml_data_page.show()

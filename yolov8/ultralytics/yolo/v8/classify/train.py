@@ -3,12 +3,12 @@
 import torch
 import torchvision
 
-from ultralytics.nn.tasks import ClassificationModel, attempt_load_one_weight
-from ultralytics.yolo import v8
-from ultralytics.yolo.data import build_classification_dataloader
-from ultralytics.yolo.engine.trainer import BaseTrainer
-from ultralytics.yolo.utils import DEFAULT_CFG
-from ultralytics.yolo.utils.torch_utils import strip_optimizer, is_parallel
+from yolov8.ultralytics.nn.tasks import ClassificationModel, attempt_load_one_weight
+from yolov8.ultralytics.yolo import v8
+from yolov8.ultralytics.yolo.data import build_classification_dataloader
+from yolov8.ultralytics.yolo.engine.trainer import BaseTrainer
+from yolov8.ultralytics.yolo.utils import DEFAULT_CFG
+from yolov8.ultralytics.yolo.utils.torch_utils import strip_optimizer, is_parallel
 
 
 class ClassificationTrainer(BaseTrainer):
@@ -146,7 +146,7 @@ def train(cfg=DEFAULT_CFG, use_python=False):
 
     args = dict(model=model, data=data, device=device)
     if use_python:
-        from ultralytics import YOLO
+        from yolov8.ultralytics import YOLO
         YOLO(model).train(**args)
     else:
         trainer = ClassificationTrainer(overrides=args)

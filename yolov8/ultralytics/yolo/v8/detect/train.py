@@ -8,17 +8,17 @@ os.environ['KMP_DUPLICATE_LIB_OK']='TRUE'
 import torch
 import torch.nn as nn
 
-from ultralytics.nn.tasks import DetectionModel
-from ultralytics.yolo import v8
-from ultralytics.yolo.data import build_dataloader
-from ultralytics.yolo.data.dataloaders.v5loader import create_dataloader
-from ultralytics.yolo.engine.trainer import BaseTrainer
-from ultralytics.yolo.utils import DEFAULT_CFG, colorstr
-from ultralytics.yolo.utils.loss import BboxLoss
-from ultralytics.yolo.utils.ops import xywh2xyxy
-from ultralytics.yolo.utils.plotting import plot_images, plot_results
-from ultralytics.yolo.utils.tal import TaskAlignedAssigner, dist2bbox, make_anchors
-from ultralytics.yolo.utils.torch_utils import de_parallel
+from yolov8.ultralytics.nn.tasks import DetectionModel
+from yolov8.ultralytics.yolo import v8
+from yolov8.ultralytics.yolo.data import build_dataloader
+from yolov8.ultralytics.yolo.data.dataloaders.v5loader import create_dataloader
+from yolov8.ultralytics.yolo.engine.trainer import BaseTrainer
+from yolov8.ultralytics.yolo.utils import DEFAULT_CFG, colorstr
+from yolov8.ultralytics.yolo.utils.loss import BboxLoss
+from yolov8.ultralytics.yolo.utils.ops import xywh2xyxy
+from yolov8.ultralytics.yolo.utils.plotting import plot_images, plot_results
+from yolov8.ultralytics.yolo.utils.tal import TaskAlignedAssigner, dist2bbox, make_anchors
+from yolov8.ultralytics.yolo.utils.torch_utils import de_parallel
 
 
 # BaseTrainer python usage
@@ -209,7 +209,7 @@ def train(cfg=DEFAULT_CFG, use_python=False):
 
     args = dict(model=model, data=data, device=device, epochs=epochs, batch=batch, imgsz=imgsz, save_dir=save_dir, augment=augment)
     if use_python:
-        from ultralytics import YOLO
+        from yolov8.ultralytics import YOLO
         YOLO(model).train(**args)
     else:
         trainer = DetectionTrainer(overrides=args)

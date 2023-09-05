@@ -2,11 +2,11 @@
 
 import requests
 
-from ultralytics.hub.auth import Auth
-from ultralytics.hub.session import HubTrainingSession
-from ultralytics.hub.utils import PREFIX, split_key
-from ultralytics.yolo.utils import LOGGER, emojis
-from ultralytics.yolo.v8.detect import DetectionTrainer
+from yolov8.ultralytics.hub.auth import Auth
+from yolov8.ultralytics.hub.session import HubTrainingSession
+from yolov8.ultralytics.hub.utils import PREFIX, split_key
+from yolov8.ultralytics.yolo.utils import LOGGER, emojis
+from yolov8.ultralytics.yolo.v8.detect import DetectionTrainer
 
 
 def start(key=''):

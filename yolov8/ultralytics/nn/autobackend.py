@@ -12,10 +12,10 @@ import torch
 import torch.nn as nn
 from PIL import Image
 
-from ultralytics.yolo.utils import LOGGER, ROOT, yaml_load
-from ultralytics.yolo.utils.checks import check_requirements, check_suffix, check_version
-from ultralytics.yolo.utils.downloads import attempt_download_asset, is_url
-from ultralytics.yolo.utils.ops import xywh2xyxy
+from yolov8.ultralytics.yolo.utils import LOGGER, ROOT, yaml_load
+from yolov8.ultralytics.yolo.utils.checks import check_requirements, check_suffix, check_version
+from yolov8.ultralytics.yolo.utils.downloads import attempt_download_asset, is_url
+from yolov8.ultralytics.yolo.utils.ops import xywh2xyxy
 
 
 def check_class_names(names):
@@ -80,7 +80,7 @@ class AutoBackend(nn.Module):
             self.model = model  # explicitly assign for to(), cpu(), cuda(), half()
             pt = True
         elif pt:  # PyTorch
-            from ultralytics.nn.tasks import attempt_load_weights
+            from yolov8.ultralytics.nn.tasks import attempt_load_weights
             model = attempt_load_weights(weights if isinstance(weights, list) else w,
                                          device=device,
                                          inplace=True,
@@ -372,7 +372,7 @@ class AutoBackend(nn.Module):
         """
         # Return model type from model path, i.e. path='path/to/model.onnx' -> type=onnx
         # types = [pt, jit, onnx, xml, engine, coreml, saved_model, pb, tflite, edgetpu, tfjs, paddle]
-        from ultralytics.yolo.engine.exporter import export_formats
+        from yolov8.ultralytics.yolo.engine.exporter import export_formats
         sf = list(export_formats().Suffix)  # export suffixes
         if not is_url(p, check=False) and not isinstance(p, str):
             check_suffix(p, sf)  # checks

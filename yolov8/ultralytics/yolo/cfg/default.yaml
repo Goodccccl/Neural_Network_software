@@ -3,16 +3,14 @@
 
 task: detect  # inference task, i.e. detect, segment, classify
 mode: train  # YOLO mode, i.e. train, val, predict, export
-#mode: predict  # YOLO mode, i.e. train, val, predict, export
 
 # Train settings -------------------------------------------------------------------------------------------------------
-model: F:\Artificial_neural_Network\yolov8-main\weights\yolov8n.pt # path to model file, i.e. yolov8n.pt, yolov8n.yaml
-#model: F:\Artificial_neural_Network\yolov8-main\ultralytics\yolo\v8\classify\runs\classify\train2\weights\best.pt
-data:  F:\Artificial_neural_Network\yolov8-main\ultralytics\yolo\data\datasets\mydata_detect.yaml # path to data file, i.e. i.e. coco128.yaml
+model: yolov8/weights\yolov8s.pt # path to model file, i.e. yolov8n.pt, yolov8n.yaml
+data:  yolov8/ultralytics/yolo/data/datasets/mydata_detect.yaml # path to data file, i.e. i.e. coco128.yaml
 epochs: 300  # number of epochs to train2 for
 patience: 50  # epochs to wait for no observable improvement for early stopping of training
 batch: 8  # number of images per batch (-1 for AutoBatch)
-imgsz: 2716  # size of input images as integer or w,h
+imgsz: 640  # size of input images as integer or w,h
 save: True  # save train checkpoints and predict results
 save_dir: H:\sawtooth\train_result
 cache: False  # True/ram, disk or False. Use cache for data loading

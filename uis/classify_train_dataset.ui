@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Creating dataset</string>
+   <string>Creating Classify Dataset</string>
   </property>
   <property name="toolTipDuration">
    <number>0</number>
@@ -71,7 +71,7 @@
   <widget class="QPlainTextEdit" name="plainTextEdit">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>130</x>
      <y>230</y>
      <width>311</width>
      <height>151</height>
@@ -90,47 +90,6 @@
    <property name="text">
     <string>下一步</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>70</y>
-     <width>121</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>请选择图片后缀名：</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox_suffix">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>70</y>
-     <width>151</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="currentIndex">
-    <number>-1</number>
-   </property>
-   <item>
-    <property name="text">
-     <string>bmp</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>jpg</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>png</string>
-    </property>
-   </item>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">

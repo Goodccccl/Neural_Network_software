@@ -64,18 +64,18 @@ import numpy as np
 import pandas as pd
 import torch
 
-import ultralytics
-from ultralytics.nn.autobackend import check_class_names
-from ultralytics.nn.modules import Detect, Segment
-from ultralytics.nn.tasks import ClassificationModel, DetectionModel, SegmentationModel, guess_model_task
-from ultralytics.yolo.cfg import get_cfg
-from ultralytics.yolo.data.dataloaders.stream_loaders import LoadImages
-from ultralytics.yolo.data.utils import check_det_dataset, IMAGENET_MEAN, IMAGENET_STD
-from ultralytics.yolo.utils import DEFAULT_CFG, LOGGER, callbacks, colorstr, get_default_args, yaml_save
-from ultralytics.yolo.utils.checks import check_imgsz, check_requirements, check_version, check_yaml
-from ultralytics.yolo.utils.files import file_size
-from ultralytics.yolo.utils.ops import Profile
-from ultralytics.yolo.utils.torch_utils import select_device, smart_inference_mode
+import yolov8.ultralytics
+from yolov8.ultralytics.nn.autobackend import check_class_names
+from yolov8.ultralytics.nn.modules import Detect, Segment
+from yolov8.ultralytics.nn.tasks import ClassificationModel, DetectionModel, SegmentationModel, guess_model_task
+from yolov8.ultralytics.yolo.cfg import get_cfg
+from yolov8.ultralytics.yolo.data.dataloaders.stream_loaders import LoadImages
+from yolov8.ultralytics.yolo.data.utils import check_det_dataset, IMAGENET_MEAN, IMAGENET_STD
+from yolov8.ultralytics.yolo.utils import DEFAULT_CFG, LOGGER, callbacks, colorstr, get_default_args, yaml_save
+from yolov8.ultralytics.yolo.utils.checks import check_imgsz, check_requirements, check_version, check_yaml
+from yolov8.ultralytics.yolo.utils.files import file_size
+from yolov8.ultralytics.yolo.utils.ops import Profile
+from yolov8.ultralytics.yolo.utils.torch_utils import select_device, smart_inference_mode
 
 MACOS = platform.system() == 'Darwin'  # macOS environment
 
@@ -200,7 +200,7 @@ class Exporter:
             'description': f"Ultralytics {self.pretty_name} model trained on {self.model.args['data']}",
             'author': 'Ultralytics',
             'license': 'GPL-3.0 https://ultralytics.com/license',
-            'version': ultralytics.__version__,
+            'version': yolov8.ultralytics.__version__,
             'stride': int(max(model.stride)),
             'names': model.names}  # model metadata
 
@@ -832,7 +832,7 @@ def export(cfg=DEFAULT_CFG):
     #         TypeError(f'Unsupported model type {cfg.model}')
     # exporter(model=model)
 
-    from ultralytics import YOLO
+    from yolov8.ultralytics import YOLO
     model = YOLO(cfg.model)
     model.export(**vars(cfg))
 

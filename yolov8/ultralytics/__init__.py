@@ -2,8 +2,8 @@
 
 __version__ = "8.0.29"
 
-from ultralytics.yolo.engine.model import YOLO
-from ultralytics.yolo.utils import ops
-from ultralytics.yolo.utils.checks import check_yolo as checks
+from yolov8.ultralytics.yolo.engine.model import YOLO
+from yolov8.ultralytics.yolo.utils import ops
+from yolov8.ultralytics.yolo.utils.checks import check_yolo as checks
 
 __all__ = ["__version__", "YOLO", "hub", "checks"]  # allow simpler import

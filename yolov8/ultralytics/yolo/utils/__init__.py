@@ -492,7 +492,7 @@ def set_sentry():
              (get_git_origin_url() == "https://github.com/ultralytics/ultralytics.git" and get_git_branch() == "main")):
 
         import sentry_sdk  # noqa
-        from ultralytics import __version__
+        from yolov8.ultralytics import __version__
 
         sentry_sdk.init(
             dsn="https://f805855f03bb4363bc1e16cb7d87b654@o4504521589325824.ingest.sentry.io/4504521592406016",
@@ -519,8 +519,8 @@ def get_settings(file=USER_CONFIG_DIR / 'settings.yaml', version='0.0.1'):
     Returns:
         dict: Dictionary of settings key-value pairs.
     """
-    from ultralytics.yolo.utils.checks import check_version
-    from ultralytics.yolo.utils.torch_utils import torch_distributed_zero_first
+    from yolov8.ultralytics.yolo.utils.checks import check_version
+    from yolov8.ultralytics.yolo.utils.torch_utils import torch_distributed_zero_first
 
     git_dir = get_git_dir()
     root = git_dir or Path()

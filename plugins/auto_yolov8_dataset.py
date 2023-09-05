@@ -8,7 +8,8 @@ import cv2
 
 from plugins.json2xml.create_xml_anno import CreateAnno
 from plugins.json2xml.read_json_anno import ReadAnno
-from plugins.Augment.augment.Data_enhancement.DataAugForObjectSegmentation.DataAugmentforLabelMe import ToolHelper, DataAugmentForObjectDetection
+from plugins.Augment.augment.Data_enhancement.DataAugForObjectSegmentation.DataAugmentforLabelMe import ToolHelper, \
+    DataAugmentForObjectDetection
 
 
 def json_transform_xml(json, xml_path, process_mode="rectangle"):
@@ -69,11 +70,6 @@ def json2txt_rectangle(json_path, txt_output_path, json_name, classes):
         data = json.load(open(json_path, 'r', encoding='gb2312', errors='ignore'))
         img_w = data['imageWidth']  # 图片的高
         img_h = data['imageHeight']  # 图片的宽
-        isshape_type = data['shapes'][0]['shape_type']
-        print(isshape_type)
-        # print(isshape_type)
-        # print('下方判断根据这里的值可以设置为你自己的类型，我这里是polygon'多边形)
-        # len(data['shapes'])
         name2id = get_name2id(classes)
         for i in data['shapes']:
             label_name = i['label']  # 得到json中你标记的类名
@@ -98,8 +94,6 @@ def json2txt_polygon(json_path, txt_output_path, json_name, classes):
         data = json.load(open(json_path, 'r', encoding='gb2312', errors='ignore'))
         img_w = data['imageWidth']  # 图片的高
         img_h = data['imageHeight']  # 图片的宽
-        isshape_type = data['shapes'][0]['shape_type']
-        print(isshape_type)
         dw = 1. / (img_w)
         dh = 1. / (img_h)
         name2id = get_name2id(classes)
@@ -127,10 +121,10 @@ def creat_ImageSet(dataset_path, train_p):
     train_n = int(num * train_p)
     trainval = random.sample(list, tv_n)
     train = random.sample(list, train_n)
-    ftrainval = open(os.path.join(dataset_path,'dataSet', 'trainval.txt'), 'w')
-    ftest = open(os.path.join(dataset_path,'dataSet', 'test.txt'), 'w')
-    ftrain = open(os.path.join(dataset_path,'dataSet', 'train.txt'), 'w')
-    fval = open(os.path.join(dataset_path,'dataSet', 'val.txt'), 'w')
+    ftrainval = open(os.path.join(dataset_path, 'dataSet', 'trainval.txt'), 'w')
+    ftest = open(os.path.join(dataset_path, 'dataSet', 'test.txt'), 'w')
+    ftrain = open(os.path.join(dataset_path, 'dataSet', 'train.txt'), 'w')
+    fval = open(os.path.join(dataset_path, 'dataSet', 'val.txt'), 'w')
     for i in list:
         name = name_lists[i].split('.')[0] + '\n'
         if i in trainval:
@@ -148,7 +142,7 @@ def creat_ImageSet(dataset_path, train_p):
 
 
 def get_images(task, image_path, json_path, dataset_path, suffix):
-    if task == 'predict':
+    if task == 'detect':
         dataset_images_Dir = os.path.join(dataset_path, 'images')
         json_names = os.listdir(json_path)
         # image_names = glob.glob(os.path.join(image_path, '*.{}'.format(suffix)))
@@ -169,10 +163,10 @@ def get_cls_classes(src_Dir):
     return classes
 
 
-def get_images_cls(image_Dirs, dataset_path, train_percent):
+def get_images_cls(image_Dirs, dataset_path, classes, train_percent):
     dataset_images_t = os.path.join(dataset_path, 'train')
     dataset_images_v = os.path.join(dataset_path, 'val')
-    classes = get_cls_classes(image_Dirs)
+    # classes = get_cls_classes(image_Dirs)
     for i in range(len(classes)):
         now_class = classes[i].strip()
         now_class_dir_t = os.path.join(dataset_images_t, now_class)
@@ -195,7 +189,7 @@ def get_images_cls(image_Dirs, dataset_path, train_percent):
 
 def creat_labels(task, json_dir, dataset_path, shape_type, classes):
     json_names = os.listdir(json_dir)
-    if task == 'predict':
+    if task == 'detect':
         labels_path = os.path.join(dataset_path, 'labels')
         if shape_type == 'rectangle':
             for json_name in json_names:
@@ -237,7 +231,7 @@ def creat_absolute_txt(dataset_path, ImageSet_path, suffix):
         val_txt_ab.write(images_path + '/' + line)
 
 
-def make_mydata_predict(task, src_image_dir, dataset_path, classes, train_percent, shape_type, suffix):
+def make_mydata_detect(task, src_image_dir, dataset_path, classes, train_percent, shape_type, suffix):
     json_dir = os.path.join(src_image_dir, 'json')
     get_images(task, src_image_dir, json_dir, dataset_path, suffix)
     creat_labels(task, json_dir, dataset_path, shape_type, classes)
@@ -247,7 +241,8 @@ def make_mydata_predict(task, src_image_dir, dataset_path, classes, train_percen
     creat_absolute_txt(dataset_path, ImageSet_path, suffix)
 
 
-def make_dataset_dir_predict(dataset_path):
+def make_dataset_dir_detect(dataset_path):
+    os.mkdir(dataset_path)
     dataSet = os.path.join(dataset_path, 'dataSet')
     images = os.path.join(dataset_path, 'images')
     labels = os.path.join(dataset_path, 'labels')
@@ -258,12 +253,13 @@ def make_dataset_dir_predict(dataset_path):
     os.mkdir(xml)
 
 
-def make_dataset_dir_classify(cls_src_dir, dataset_path, train_percent=0.8):
+def make_dataset_dir_classify(cls_src_dir, dataset_path, classes, train_percent):
     # 取图操作
-    get_images_cls(cls_src_dir, dataset_path, train_percent)
+    get_images_cls(cls_src_dir, dataset_path, classes, train_percent)
 
 
-def make_dataset_dir_seg(task, src_image_dir, dataset_path, classes, shape_type, suffix):
+def make_dataset_dir_seg(dataset_path):
+    os.mkdir(dataset_path)
     images = os.path.join(dataset_path, 'images')
     labels = os.path.join(dataset_path, 'labels')
     os.mkdir(images)
@@ -272,6 +268,8 @@ def make_dataset_dir_seg(task, src_image_dir, dataset_path, classes, shape_type,
     labels_train = os.path.join(labels, 'train2017')
     os.mkdir(images_train)
     os.mkdir(labels_train)
+
+def make_mydata_segment(task, src_image_dir, dataset_path, classes, shape_type, suffix):
     # 获取polygon多边形点位操作
     json_dir = os.path.join(src_image_dir, 'json')
     creat_labels(task, json_dir, dataset_path, shape_type, classes)
@@ -283,43 +281,51 @@ def Augment_json(src_image_dir, aug_times, suffix):
     dataAug = DataAugmentForObjectDetection()
     json_dir = os.path.join(src_image_dir, 'json')
     json_lists = os.listdir(json_dir)
+    augmented_dir = os.path.join(os.path.dirname(src_image_dir), 'augmented')
+    if os.path.exists(augmented_dir):
+        shutil.rmtree(augmented_dir)
+        os.mkdir(augmented_dir)
+        augmented_json_dir = os.path.join(augmented_dir, 'json')
+        os.mkdir(augmented_json_dir)
+    else:
+        os.mkdir(augmented_dir)
+        augmented_json_dir = os.path.join(augmented_dir, 'json')
+        os.mkdir(augmented_json_dir)
     for i in json_lists:
         cnt = 0
         json_name = i.strip()
         json_path = os.path.join(json_dir, json_name)
         image_name = json_name.split('.')[0] + '.' + suffix
         image_path = os.path.join(src_image_dir, image_name)
+        shutil.copy(image_path, os.path.join(augmented_dir, image_name))  # 复制原图进入增强后文件夹
+        shutil.copy(json_path, os.path.join(augmented_json_dir, json_name))  # 复制原json文件进入增强后文件夹（复制操作为了不影响原始数据）
         json_dic = toolhelper.parse_json(json_path)
         img = cv2.imread(image_path)
         img_prefix = image_name.split('.')[0]
         img_suffix = image_name.split('.')[1]
-        while cnt < aug_times:
+        while cnt < aug_times:  # 增强
             auged_img, json_info = dataAug.dataAugment(deepcopy(img), deepcopy(json_dic))
             img_name = '{}_{}.{}'.format(img_prefix, cnt + 1, img_suffix)
-            img_save_path = os.path.join(src_image_dir, img_name)
+            img_save_path = os.path.join(augmented_dir, img_name)
             toolhelper.save_img(img_save_path, auged_img)
-
             json_info['imagePath'] = img_name
             base64_data = toolhelper.img2str(img_save_path)
             json_info['imageData'] = base64_data
-            toolhelper.save_json('{}_{}.json'.format(img_prefix, cnt + 1), json_dir, json_info)
-            print(img_name)
+            toolhelper.save_json('{}_{}.json'.format(img_prefix, cnt + 1), augmented_json_dir, json_info)
             cnt += 1
-    print("————————————————————————————————增强完毕————————————————————————————————")
-
 
 
 if __name__ == "__main__":
     # 原始数据放置， 图片文件夹下创建json文件夹存放所有的json文件即可
-    task = 'predict'                    # 任务名 predict, classify, segment
-    augment = True                     # 是否启用数据增强
-    aug_times = 5                       # 每张图增强次数
-    src_image_dir = r'H:\sawtooth\dataset'           # 输入原始数据文件夹地址
-    dataset_path = r'H:\sawtooth\yolov8_detect_data'           # 输出数据集保存地址
-    classes = ['break', 'filament']         # 类别名
-    train_percent = 0.8                 # 训练和验证占比
-    shape_type = 'rectangle'              # json中标签是多边形（polygon）还是四边形（rectangle）
-    suffix = 'bmp'                      # 原始数据图片后缀
+    task = 'detect'  # 任务名 detect, classify, segment
+    augment = True  # 是否启用数据增强
+    aug_times = 5  # 每张图增强次数
+    src_image_dir = r'H:\sawtooth\dataset'  # 输入原始数据文件夹地址
+    dataset_path = r'H:\sawtooth\yolov8_detect_data'  # 输出数据集保存地址
+    classes = ['break', 'filament']  # 类别名
+    train_percent = 0.8  # 训练和验证占比
+    shape_type = 'rectangle'  # json中标签是多边形（polygon）还是四边形（rectangle）
+    suffix = 'bmp'  # 原始数据图片后缀
     if not os.path.exists(dataset_path):
         os.mkdir(dataset_path)
         print("数据集存放地址不存在，为您创建数据集存放文件夹！\n地址为：{}".format(dataset_path))
@@ -329,8 +335,8 @@ if __name__ == "__main__":
         if not sz:
             print("数据集存放文件夹为空，开始制作{}数据集！".format(task))
             if task == 'predict':
-                make_dataset_dir_predict(dataset_path)
-                make_mydata_predict(task, src_image_dir, dataset_path, classes, train_percent, shape_type, suffix)
+                make_dataset_dir_detect(dataset_path)
+                make_mydata_detect(task, src_image_dir, dataset_path, classes, train_percent, shape_type, suffix)
             if task == 'segment':
                 make_dataset_dir_seg(task, src_image_dir, dataset_path, classes, shape_type, suffix)
             if task == 'classify':
@@ -342,8 +348,8 @@ if __name__ == "__main__":
         if not sz:
             print("数据集存放文件夹为空，开始制作{}数据集！".format(task))
             if task == 'predict':
-                make_dataset_dir_predict(dataset_path)
-                make_mydata_predict(task, src_image_dir, dataset_path, classes, train_percent, shape_type, suffix)
+                make_dataset_dir_detect(dataset_path)
+                make_mydata_detect(task, src_image_dir, dataset_path, classes, train_percent, shape_type, suffix)
             if task == 'segment':
                 make_dataset_dir_seg(task, src_image_dir, dataset_path, classes, shape_type, suffix)
             if task == 'classify':

@@ -8,10 +8,10 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import Dict, List, Union
 
-from ultralytics import __version__
-from ultralytics.yolo.utils import (DEFAULT_CFG, DEFAULT_CFG_DICT, DEFAULT_CFG_PATH, LOGGER, PREFIX, ROOT,
+from yolov8.ultralytics import __version__
+from yolov8.ultralytics.yolo.utils import (DEFAULT_CFG, DEFAULT_CFG_DICT, DEFAULT_CFG_PATH, LOGGER, PREFIX, ROOT,
                                     USER_CONFIG_DIR, IterableSimpleNamespace, colorstr, emojis, yaml_load, yaml_print)
-from ultralytics.yolo.utils.checks import check_yolo
+from yolov8.ultralytics.yolo.utils.checks import check_yolo
 
 CLI_HELP_MSG = \
     """
@@ -238,7 +238,7 @@ def entrypoint(debug=''):
     if model is None:
         model = task2model.get(task, 'yolov8n.pt')
         LOGGER.warning(f"WARNING ⚠️ 'model=' is missing. Using default 'model={model}'.")
-    from ultralytics.yolo.engine.model import YOLO
+    from yolov8.ultralytics.yolo.engine.model import YOLO
     overrides['model'] = model
     model = YOLO(model)
 

@@ -3,10 +3,10 @@ import sys
 
 import torch
 
-from ultralytics.yolo.engine.predictor import BasePredictor
-from ultralytics.yolo.engine.results import Results
-from ultralytics.yolo.utils import DEFAULT_CFG, ROOT
-from ultralytics.yolo.utils.plotting import Annotator
+from yolov8.ultralytics.yolo.engine.predictor import BasePredictor
+from yolov8.ultralytics.yolo.engine.results import Results
+from yolov8.ultralytics.yolo.utils import DEFAULT_CFG, ROOT
+from yolov8.ultralytics.yolo.utils.plotting import Annotator
 
 
 class ClassificationPredictor(BasePredictor):
@@ -72,7 +72,7 @@ def predict(cfg=DEFAULT_CFG, use_python=False):
 
     args = dict(model=model, source=source)
     if use_python:
-        from ultralytics import YOLO
+        from yolov8.ultralytics import YOLO
         YOLO(model)(**args)
     else:
         predictor = ClassificationPredictor(overrides=args)

@@ -20,9 +20,8 @@ import torch
 from IPython import display
 from matplotlib import font_manager
 
-from ultralytics.yolo.utils import (AUTOINSTALL, LOGGER, ROOT, USER_CONFIG_DIR, TryExcept, colorstr, downloads, emojis,
+from yolov8.ultralytics.yolo.utils import (AUTOINSTALL, LOGGER, ROOT, USER_CONFIG_DIR, TryExcept, colorstr, downloads, emojis,
                                     is_colab, is_docker, is_jupyter)
-
 
 def is_ascii(s) -> bool:
     """
@@ -282,7 +281,7 @@ def check_imshow(warn=False):
 
 
 def check_yolo(verbose=True):
-    from ultralytics.yolo.utils.torch_utils import select_device
+    from yolov8.ultralytics.yolo.utils.torch_utils import select_device
 
     if is_colab():
         shutil.rmtree('sample_data', ignore_errors=True)  # remove colab /sample_data directory
