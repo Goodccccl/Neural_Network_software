@@ -123,20 +123,7 @@
       <string>save_dir:</string>
      </property>
     </widget>
-    <widget class="QToolButton" name="toolButton">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>60</y>
-       <width>31</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>...</string>
-     </property>
-    </widget>
-    <widget class="QToolButton" name="toolButton_2">
+    <widget class="QToolButton" name="toolButton_select_saveDir">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -147,16 +134,6 @@
      </property>
      <property name="text">
       <string>...</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_model">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>60</y>
-       <width>113</width>
-       <height>20</height>
-      </rect>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_epochs">
@@ -196,6 +173,72 @@
        <y>180</y>
        <width>113</width>
        <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>40</y>
+       <width>881</width>
+       <height>511</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_start_train">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>230</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_model">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>60</y>
+       <width>111</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>yolov8s</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>yolov8l</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>yolov8n</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>yolov8m</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QPlainTextEdit" name="plainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>570</y>
+       <width>881</width>
+       <height>231</height>
       </rect>
      </property>
     </widget>

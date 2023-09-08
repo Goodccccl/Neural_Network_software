@@ -6,6 +6,8 @@ from MakingTrainDataset.detect_train_dataset import  Detect_train_dataset_page
 from MakingTrainDataset.segment_train_dataset import Segment_train_dataset_page
 from MakingTrainDataset.abnormal_train_dataset import Abnormal_train_dataset_page
 
+from function_page.detect_page import Detect_page
+
 
 class Home_page(QMainWindow):
     def __init__(self):

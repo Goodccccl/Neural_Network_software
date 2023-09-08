@@ -214,7 +214,11 @@ def train(cfg=DEFAULT_CFG, use_python=False):
     else:
         trainer = DetectionTrainer(overrides=args)
         trainer.train()
+        sign = 1
+        print(sign)
+
 
 
 if __name__ == "__main__":
     train()
+    print("训练结束")

@@ -2,6 +2,6 @@ path: F:/software_try\detect_dataset
 train: train.txt
 val: val.txt
 names:
-  0: chip
-  1: crack
+  0: break
+  1: filament
 nc: 2
